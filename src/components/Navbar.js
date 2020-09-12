@@ -102,7 +102,7 @@ const Navbar = () => {
                   srcSet=""
                 />
               </div>
-              <div className="d-none d-md-block d-lg-inline-block">Hi, Saugi</div>
+              <div className="d-none d-md-block d-lg-inline-block">Olá, Teste</div>
             </a>
             <div className="dropdown-menu dropdown-menu-right">
               <a className="dropdown-item" href="!#">

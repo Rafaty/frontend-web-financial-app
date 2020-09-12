@@ -19,13 +19,9 @@ const TableJobs = () => {
   return (
     <section className="section">
       <div className="card">
-      <div className="card-header d-flex justify-content-between">
+        <div className="card-header d-flex justify-content-between">
           <h3 className="card-title">Lista de Serviços</h3>
-          <a
-            href="/produtos-criar"
-            role="button"
-            className="btn btn-success"
-          >
+          <a href="/produtos-criar" role="button" className="btn btn-success">
             <i className="fa fa-plus"></i>
             Novo
           </a>
@@ -36,43 +32,40 @@ const TableJobs = () => {
               <tr className="text-dark">
                 <th>Descrição</th>
                 <th>Cliente</th>
+                <th>Entrega</th>
                 <th>Orçamento</th>
-                <th>Balanço atual</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              {jobs.map((job) => (
-                <tr key={job.id}>
-                  <td>{job.description}</td>
-                  <td>{job.client.name}</td>
+              {jobs.map((job) => {
+                const date = new Date(job.finalDate);
+                return (
+                  <tr key={job.id}>
+                    <td>{job.description}</td>
+                    <td>{job.client.name}</td>
+                    <td>{Intl.DateTimeFormat("pt-BR").format(date)}</td>
 
-                  <td className="text-primary">
-                    {Intl.NumberFormat("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    }).format(job.budget)}
-                  </td>
-                  <td
-                    className={
-                      job.wallet.total > 0 ? "text-success" : "text-danger"
-                    }
-                  >
-                    {Intl.NumberFormat("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    }).format(job.wallet.total)}
-                  </td>
-                  <td>
-                    <a href="!#" title="Editar">
-                      <i className="fa fa-edit text-primary"></i>
-                    </a>
-                    <a className="ml-2" href="!#" title="Excluir">
-                      <i className="fa fa-trash text-danger "></i>
-                    </a>
-                  </td>
-                </tr>
-              ))}
+                    <td className="text-success">
+                      {Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(job.budget)}
+                    </td>
+                    <td>
+                      <a className="mr-2" href="!#" title="Vizualizar">
+                        <i className="fa fa-eye text-dark "></i>
+                      </a>
+                      <a href="!#" title="Editar">
+                        <i className="fa fa-edit text-primary"></i>
+                      </a>
+                      <a className="ml-2" href="!#" title="Excluir">
+                        <i className="fa fa-trash text-danger "></i>
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
